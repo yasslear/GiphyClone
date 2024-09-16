@@ -10,10 +10,7 @@ lerna-debug.log*
 # Node modules
 node_modules/
 
-# Build directories
-dist/*
-!dist/*.html
-!dist/assets/
+
 
 # Editor directories and files
 .vscode/*
