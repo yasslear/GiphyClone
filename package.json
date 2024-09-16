@@ -1,6 +1,7 @@
 {
   "name": "giph_website",
   "private": true,
+  "homepage": "https://yasslear.github.io/GiphyClone",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
