@@ -1,8 +1,47 @@
-# React + Vite
+# Giphy Clone
+A simple Giphy.com clone built using React+Vite and the Giphy API. This project allows users to search for GIFs, view trending GIFs, and interact with GIFs just like the original Giphy platform.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Features
+- Search for GIFs using the Giphy API.
+- View trending GIFs by category.
+- Copy GIF links to the clipboard.
+- Add GIFs to your favourites list (Favourites button appears dynamically once one or more gifs have been saved)
+- Responsive design for mobile and desktop.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Live Demo
+[Live version here](https://yassine-elaamri.netlify.app/)
+
+
+## Technologies Used
+- React.js, Vite
+- Giphy API
+- HTML5, Tailwind CSS, JavaScript
+
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yasslear/GiphyClone.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd giphyclone
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Create a `.env` file in the root directory and add your Giphy API key:
+   ```
+   REACT_APP_GIPHY_API_KEY=your-giphy-api-key
+   ```
+5. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## Usage
+- Search for GIFs by typing in the search bar or browse by category.
+- Click on any GIF to view the details, add to favourites or copy the link.
