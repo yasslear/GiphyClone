@@ -6,12 +6,12 @@ A simple Giphy.com clone built using React+Vite and the Giphy API. This project 
 - Search for GIFs using the Giphy API.
 - View trending GIFs by category.
 - Copy GIF links to the clipboard.
-- Add GIFs to your favourites list (Favourites button appears dynamically once one or more gifs have been saved)
+- Add GIFs to your favourites list.
 - Responsive design for mobile and desktop.
 
 
 ## Live Demo
-[Live version here](https://yassine-elaamri.netlify.app/)
+[Live version here](https://giphy.yassine-el.co.uk/)
 
 
 ## Technologies Used
