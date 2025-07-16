@@ -21,14 +21,16 @@ const GifProvider = ({ children }) => {
     if (favourites.includes(id)) {
       
       const updatedFavourites = favourites.filter((itemId) => itemId !== id);
-      localStorage.setItem("favoriteGIFs", JSON.stringify(updatedFavourites));
+      localStorage.setItem("favouriteGIFs", JSON.stringify(updatedFavourites));
       setFavourites(updatedFavourites);
+      return 'removed';
     } else {
       
       const updatedFavourites = [...favourites];
       updatedFavourites.push(id);
-      localStorage.setItem("favoriteGIFs", JSON.stringify(updatedFavourites));
+      localStorage.setItem("favouriteGIFs", JSON.stringify(updatedFavourites));
       setFavourites(updatedFavourites);
+      return 'added';
     }
   };
 

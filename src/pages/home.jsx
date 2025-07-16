@@ -25,19 +25,25 @@ const Home = () => {
     }, [filter]);
 
 
-    return (<div>
-        <img 
-            src="/banner.gif"
-            alt="banner"
-            className="mt-2 rounded w-full"
-        />
-    <FilterGif />
-    <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2 mt-3">
-        {gifs.map((gif) => {
-           return <Gif gif={gif} key={gif.id}/>
-        })}
-    </div>
-    </div>
+    return (
+      <div>
+        <div className="relative mb-6">
+          <img 
+              src="/banner.gif"
+              alt="banner"
+              className="w-full rounded-xl shadow-lg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
+        </div>
+        
+        <FilterGif />
+        
+        <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 2xl:columns-6 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
+            {gifs.map((gif) => {
+               return <Gif gif={gif} key={gif.id}/>
+            })}
+        </div>
+      </div>
     );
   };
   

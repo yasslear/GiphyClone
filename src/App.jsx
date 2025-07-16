@@ -7,6 +7,7 @@ import GifPage from './pages/single-gif';
 import Favourites from './pages/favourites';
 import Home from './pages/home';
 import GifProvider from './context/gif-context';
+import ToastProvider from './context/toast-context';
 
 const router = createBrowserRouter([
   {
@@ -38,9 +39,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <GifProvider>
-      <RouterProvider router={router} />
-    </GifProvider>
+    <ToastProvider>
+      <GifProvider>
+        <RouterProvider router={router} />
+      </GifProvider>
+    </ToastProvider>
   );
 }
 

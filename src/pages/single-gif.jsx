@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GifState } from "../context/gif-context";
+import { useToast } from "../context/toast-context";
 import Gif from "../components/gif";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { FaPaperPlane } from "react-icons/fa";
@@ -15,6 +16,7 @@ const GifPage = () => {
   const [singleGif, setSingleGif] = useState({});
   const [relatedGifs, setRelatedGifs] = useState([]);
   const {gif, favourites, addRemoveFavourites} = GifState();
+  const { showToast } = useToast();
 
 
   useEffect(() => {
@@ -35,8 +37,22 @@ const GifPage = () => {
   const handleCopyUrl = () => {
     const url = window.location.href; // Get the current URL
     navigator.clipboard.writeText(url) // Copy the URL to the clipboard
-      .then(() => alert("URL copied to clipboard!"))
-      .catch(err => console.error("Failed to copy URL:", err));
+      .then(() => {
+        showToast("URL copied to clipboard! 🎉", "success", 3000);
+      })
+      .catch(err => {
+        console.error("Failed to copy URL:", err);
+        showToast("Failed to copy URL. Please try again.", "error", 4000);
+      });
+  };
+
+  const handleFavoriteToggle = () => {
+    const action = addRemoveFavourites(singleGif.id);
+    if (action === 'added') {
+      showToast("Added to favorites! ❤️", "success", 2500);
+    } else {
+      showToast("Removed from favorites", "info", 2500);
+    }
   };
 
 
@@ -96,7 +112,7 @@ const GifPage = () => {
             className="ml-auto pl-3">
               <FaPaperPlane size={25}/>
             </button>
-            <button onClick={()=>addRemoveFavourites(singleGif.id)} className="pl-3">
+            <button onClick={handleFavoriteToggle} className="pl-3">
               <HiHeart className={`${favourites.includes(singleGif.id)? "text-red-500": "" }`} size={30}/>
             </button>
           </div>
@@ -108,7 +124,7 @@ const GifPage = () => {
                 <FaPaperPlane size={30}/> Share
             </button>
             <button 
-              onClick={()=>addRemoveFavourites(singleGif.id)} 
+              onClick={handleFavoriteToggle} 
               className="flex gap-5 items-center font-bold text-lg" >
                 <HiHeart className={`${favourites.includes(singleGif.id)? "text-red-500": "" }`} size={30}/> Favourite
             </button>

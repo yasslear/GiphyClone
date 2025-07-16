@@ -24,42 +24,72 @@ const Header = () => {
 
   return (
     <nav>
-      <div className="relative flex gap-4 justify-between items-end mb-2">
-        <Link to="/" className="flex gap-2">
-          <img src="/logo.svg" alt="Logo" className="w-8 " />
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight cursor-pointer">Giphy</h1>
+      <div className="relative flex gap-2 sm:gap-4 justify-between items-end mb-4 sm:mb-6">
+        <Link to="/" className="flex gap-2 items-center">
+          <img src="/logo.svg" alt="Logo" className="w-6 sm:w-8" />
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight cursor-pointer bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+            Giphy
+          </h1>
         </Link>
 
-        {categories?.slice(0, 5)?.map((category) => (
-          <Link key={category.name} to={`/${category.name_encoded}`} className="px-4 py-2 hover:gradient border-b-4 hidden lg:block">
-            {category.name}
+        {/* Desktop Categories */}
+        <div className="hidden lg:flex gap-1">
+          {categories?.slice(0, 5)?.map((category) => (
+            <Link 
+              key={category.name} 
+              to={`/${category.name_encoded}`} 
+              className="px-3 py-2 text-sm font-medium hover:bg-gray-800 rounded-lg transition-colors duration-200 border-b-2 border-transparent hover:border-purple-500"
+            >
+              {category.name}
+            </Link>
+          ))}
+        </div>
+
+        <button 
+          onClick={() => SetShowCategories(!showCategories)}
+          className="hidden lg:block"
+        >
+          <HiEllipsisVertical 
+            size={28} 
+            className={`p-1 rounded-lg hover:bg-gray-800 transition-colors duration-200 ${showCategories ? "bg-gray-800 text-purple-400" : ""}`} 
+          />
+        </button>
+
+        {/* Favourites Button - Always Visible */}
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 transform hover:scale-105 shadow-lg">
+          <Link to="/favourites" className="font-medium text-sm">
+            Favourites {favourites.length > 0 && `(${favourites.length})`}
           </Link>
-        ))}
+        </div>
 
-        <button onClick={() => SetShowCategories(!showCategories)}>
-          <HiEllipsisVertical size={35} className={`py-0.5 hover:gradient ${showCategories ? "gradient" : ""} border-b-4 hidden lg:block`} />
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={() => SetShowCategories(!showCategories)}
+          className="lg:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+        > 
+          <HiMiniBars3BottomRight size={24} className="text-purple-400" />
         </button>
 
-        {favourites.length > 0 && (
-          <div className="h-9 bg-gray-700 pt-1.5 px-6 cursor-pointer rounded">
-            <Link to="/favourites">Favourites</Link>
-          </div>
-        )}
-
-        <button onClick={() => SetShowCategories(!showCategories)}> 
-          <HiMiniBars3BottomRight size={30} className="text-sky-400 block lg:hidden" />
-        </button>
-
+        {/* Mobile/Tablet Categories Dropdown */}
         {showCategories && (
-          <div className="absolute right-0 top-14 px-10 pt-6 pb-9 w-full gradient z-20">
-            <span className="text-3xl font-extrabold">Categories</span>
-            <hr className="bg-gray-100 opacity-50 my-5" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {categories.map((category) => (
-                <Link to={`/${category.name_encoded}`} key={category.name} onClick={() => SetShowCategories(!showCategories)} className="font-bold hover:text-gray-400">
-                  {category.name}
-                </Link>
-              ))}
+          <div className="absolute right-0 top-14 sm:top-16 w-full sm:w-96 lg:w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl shadow-2xl z-20 border border-gray-700 backdrop-blur-sm">
+            <div className="p-6">
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                Categories
+              </span>
+              <hr className="border-gray-600 my-4" />
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+                {categories.map((category) => (
+                  <Link 
+                    to={`/${category.name_encoded}`} 
+                    key={category.name} 
+                    onClick={() => SetShowCategories(false)} 
+                    className="font-medium text-sm p-2 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-center"
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         )}
